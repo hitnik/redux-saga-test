@@ -4,6 +4,7 @@ import {requestDog, requestDogSuccess, requestDogError, fetchDog} from '../actio
 function* fetchDogAsync() {
     try {
       yield put(requestDog());
+      console.log('request')
       const data = yield call(() => {
         return fetch('https://dog.ceo/api/breeds/image/random')
                 .then(res => res.json())
@@ -17,7 +18,7 @@ function* fetchDogAsync() {
 
 
 function* watchFetchDog() {
-    yield takeEvery(fetchDog(), fetchDogAsync);
+    yield takeEvery('FETCHED_DOG', fetchDogAsync);
   }
   
   

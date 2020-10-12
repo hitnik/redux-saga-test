@@ -16,24 +16,33 @@ const App = (props) =>{
         props.decrement();
         setCount(props.count-1);
     };
+
+    const handleDog = () => {
+        props.fetchDog()
+    }
+
     return (
         <div>
             <h1>Count: {count} </h1>
+    <h3>{props.url}</h3>
             <button onClick={handleIncrement}>Increment </button>
             <button onClick={handleDecrement}>Decrement</button>
-            <button onClick={props.fetchDog()}>Show Dog</button>
-                {this.props.loading 
+            <button onClick={handleDog}>Show Dog</button>
+                {props.loading 
                     ? <p>Loading...</p> 
-                    : this.props.error
+                    : props.error
                         ? <p>Error, try again</p>
-                        : <p><img src={this.props.url}/></p>}
+                        : <p><img src={props.url}/></p>}
             </div>
     );
 }
 
 const mapStateToProps = state => {
     return {
-      count: state.count
+      count: state.count,
+      loading: state.dog.loading,
+      error: state.dog.error,
+      url: state.dog.url 
     }
   }
 

@@ -1,5 +1,5 @@
 const initialState = {
-    url: '',
+    url: 'https://dog.ceo/api/breeds/image/random',
     loading: false,
     error: false,
   };
